@@ -12,13 +12,13 @@
         //font-family: Lato;
 
         &.active {
-            background-color: white;
+            background-color: @body-bg;
             border-color: @separator-color;
-            border-bottom-color: white;
+            border-bottom-color: @body-bg;
         }
         &.special {
-            @special-color: #396cad;
-            color: white;
+            @special-color: rgb(60, 60, 60);
+            color: @text-color;
             background-color: @special-color;
             border-bottom-color: @special-color;
             &:hover {

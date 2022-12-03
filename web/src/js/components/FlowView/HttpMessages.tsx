@@ -146,3 +146,14 @@ export function Response() {
     return <Message flow={flow} message={flow.response}/>;
 }
 Response.displayName = "Response"
+
+export function RequestResponse() {
+    return (
+        <div className="request-response">
+            <Request />
+            <div className="separator" />
+            <Response />
+        </div>
+    );
+}
+RequestResponse.displayName = "Request/Response"

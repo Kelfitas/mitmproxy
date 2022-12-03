@@ -7,7 +7,7 @@
     flex-direction: column;
 
     > div {
-        background-color: #F2F2F2;
+        background-color: @input-bg;
         padding: 0 5px;
         flex: 0 0 auto;
         border-top: 1px solid #aaa;
@@ -21,7 +21,7 @@
         border-radius: 0;
         overflow-x: auto;
         overflow-y: scroll;
-        background-color: #fcfcfc;
+        background-color: lighten(@input-bg, 5%);
     }
 
     .fa-close {

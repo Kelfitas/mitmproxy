@@ -18,8 +18,8 @@
     }
 
     thead tr {
-        background-color: #F2F2F2;
-        border-bottom: solid #bebebe 1px;
+        background-color: @row-color;
+        border-bottom: solid lighten(@row-color, 5%) 1px;
         line-height: 23px;
     }
 
@@ -30,7 +30,7 @@
         .user-select(none);
 
         &.sort-asc, &.sort-desc {
-            background-color: lighten(#F2F2F2, 3%);
+            background-color: lighten(@row-color, 3%);
         }
 
         &.sort-asc:after, &.sort-desc:after {
@@ -39,7 +39,7 @@
             right: 3px;
             top: 3px;
             padding: 2px;
-            background-color: fadeout(lighten(#F2F2F2, 3%), 20%);
+            background-color: fadeout(lighten(@row-color, 3%), 20%);
         }
 
         &.sort-asc:after {
@@ -55,25 +55,25 @@
     tr {
         cursor: pointer;
 
-        background-color: white;
+        background-color: @row-color;
 
         &:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: @body-color;
         }
 
         &.selected {
-            background-color: #e0ebf5 !important;
+            background-color: @row-selected !important;
         }
         &.selected.highlighted {
-            background-color: #7bbefc !important;
+            background-color: @row-selected-hl !important;
         }
 
         &.highlighted {
-            background-color: #ffeb99;
+            background-color: @row-hl;
         }
 
         &.highlighted:nth-child(even) {
-            background-color: #ffe57f;
+            background-color: lighten(@row-hl, 5%);
         }
     }
 

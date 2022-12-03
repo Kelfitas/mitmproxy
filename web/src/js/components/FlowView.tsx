@@ -1,6 +1,6 @@
 import * as React from "react"
 import {FunctionComponent} from "react"
-import {Request, Response} from './FlowView/HttpMessages'
+import {Request, Response, RequestResponse} from './FlowView/HttpMessages'
 import {Request as DnsRequest, Response as DnsResponse} from './FlowView/DnsMessages'
 import Connection from './FlowView/Connection'
 import Error from "./FlowView/Error"
@@ -21,6 +21,7 @@ type TabProps = {
 export const allTabs: { [name: string]: FunctionComponent<TabProps> & { displayName: string } } = {
     request: Request,
     response: Response,
+    requestResponse: RequestResponse,
     error: Error,
     connection: Connection,
     timing: Timing,
@@ -31,11 +32,16 @@ export const allTabs: { [name: string]: FunctionComponent<TabProps> & { displayN
     dnsresponse: DnsResponse,
 }
 
-export function tabsForFlow(flow: Flow): string[] {
-    let tabs;
+export function tabsForFlow(flow: Flow, isSplitView: boolean): string[] {
+    let tabs: string[] = [];
     switch (flow.type) {
         case "http":
-            tabs = ['request', 'response', 'websocket'].filter(k => flow[k])
+            if (isSplitView && flow['request'] && flow['response']) {
+                tabs.push('requestResponse');
+                flow['websocket'] && tabs.push('websocket');
+            } else {
+                tabs = ['request', 'response', 'websocket'].filter(k => flow[k]);
+            }
             break
         case "tcp":
             tabs = ["tcpmessages"]
@@ -58,7 +64,8 @@ export function tabsForFlow(flow: Flow): string[] {
 export default function FlowView() {
     const dispatch = useAppDispatch(),
         flow = useAppSelector(state => state.flows.byId[state.flows.selected[0]]),
-        tabs = tabsForFlow(flow);
+        isSplitView = useAppSelector(state => state.splitView.visible),
+        tabs = tabsForFlow(flow, isSplitView);
 
     let active = useAppSelector(state => state.ui.flow.tab)
     if (tabs.indexOf(active) < 0) {

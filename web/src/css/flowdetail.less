@@ -5,7 +5,7 @@
     flex-direction: column;
 
     nav {
-        background-color: #F2F2F2;
+        background-color: @input-bg;
     }
 
     section {
@@ -24,8 +24,8 @@
 
     .first-line {
         font-family: @font-family-monospace;
-        background-color: #428bca;
-        color: white;
+        background-color: @row-selected-hl;
+        color: @input-color;
         margin: 0 -8px 2px;
         padding: 4px 8px;
         border-radius: 5px;
@@ -141,7 +141,7 @@
     }
 
     .inline-input {
-        background-color: white;
+        background-color: @input-bg;
     }
 
     .kv-add-row {

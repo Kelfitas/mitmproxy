@@ -18,7 +18,8 @@ export default class CodeEditor extends Component<CodeEditorProps> {
 
     render = () => {
         const options = {
-            lineNumbers: true
+            lineNumbers: true,
+            theme: 'monokai',
         };
         return (
             <div className="codeeditor" onKeyDown={e => e.stopPropagation()}>
